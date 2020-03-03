@@ -4,6 +4,8 @@ php:
   - 7
   - 7.1
   - 7.2
+  - 7.3
+  - 7.4
 
 services:
   - mysql
@@ -34,7 +36,9 @@ before_script:
   - echo ${TRAVIS_PHP_VERSION:0:3}
   - |
     case ${TRAVIS_PHP_VERSION:0:3} in
-      "7.*" ) composer require --dev phpunit/phpunit ^7;;
+      "7.3 7.4" ) composer require --dev phpunit/phpunit ^9;;
+      "7.2" ) composer require --dev phpunit/phpunit ^8;;
+      "7.1" ) composer require --dev phpunit/phpunit ^7;;
       "7" ) composer require --dev phpunit/phpunit ^6;;
       *) composer require --dev phpunit/phpunit ^4
     esac
