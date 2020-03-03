@@ -10,30 +10,10 @@ php:
 services:
   - mysql
 
-# notifications:
-#   email:
-#     on_success: never
-#     on_failure: change
-
-# branches:
-#   only:
-#     - master
-
-# env:
-#   - WP_VERSION=latest WP_MULTISITE=0
-#   # - WP_VERSION=4.0 WP_MULTISITE=0
-#   - WP_VERSION=4.7.0 WP_MULTISITE=0
-
-# matrix:
-#   include:
-#     - php: 5.6
-#       env: WP_VERSION=latest WP_MULTISITE=1
-
 before_script:
   - travis_retry npm install -D
   - bash bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 $WP_VERSION
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - echo ${TRAVIS_PHP_VERSION:0:3}
   - |
     case ${TRAVIS_PHP_VERSION:0:3} in
       "7.3 7.4" ) composer require --dev phpunit/phpunit ^9;;
@@ -41,10 +21,6 @@ before_script:
       "7" ) composer require --dev phpunit/phpunit ^6;;
       *) composer require --dev phpunit/phpunit ^4
     esac
-#   - |
-#     composer global require wp-coding-standards/wpcs
-#     phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
 
 script:
-#   - phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
 - ./vendor/bin/phpunit
