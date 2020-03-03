@@ -33,8 +33,8 @@ before_script:
   - travis_retry npm install -D
   - bash bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 $WP_VERSION
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then
+  - echo ${TRAVIS_PHP_VERSION}
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then
       composer global require "phpunit/phpunit=5.6.*"
     else
       composer global require "phpunit/phpunit=4.8.*"
@@ -43,6 +43,6 @@ before_script:
 #     composer global require wp-coding-standards/wpcs
 #     phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
 
-# script:
+script:
 #   - phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
-#   - phpunit
+  - phpunit
