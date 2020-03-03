@@ -34,9 +34,9 @@ before_script:
   - echo ${TRAVIS_PHP_VERSION}
   - |
     if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then
-      composer global require "phpunit/phpunit=7.*"
+      composer global require -D "phpunit/phpunit=7.5.*"
     else
-      composer global require "phpunit/phpunit=4.8.*"
+      composer global require -D "phpunit/phpunit=4.8.*"
     fi
 #   - |
 #     composer global require wp-coding-standards/wpcs
@@ -44,4 +44,4 @@ before_script:
 
 script:
 #   - phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
-  - phpunit
+- ./vendor/bin/phpunit
