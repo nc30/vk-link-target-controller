@@ -17,8 +17,6 @@ services:
 #   only:
 #     - master
 
-
-
 # env:
 #   - WP_VERSION=latest WP_MULTISITE=0
 #   # - WP_VERSION=4.0 WP_MULTISITE=0
@@ -36,7 +34,7 @@ before_script:
   - echo ${TRAVIS_PHP_VERSION}
   - |
     if [[ ${TRAVIS_PHP_VERSION:0:1} == "7" ]]; then
-      composer global require "phpunit/phpunit=8.*"
+      composer global require "phpunit/phpunit=7.*"
     else
       composer global require "phpunit/phpunit=4.8.*"
     fi
